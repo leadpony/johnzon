@@ -76,10 +76,11 @@ class Strings implements JsonChars {
     }
 
     static void appendEscaped(final String value, final StringBuilder builder) {
-        final int length = value.length();
+        final char[] chars = value.toCharArray();
+        final int length = chars.length;
         int nextStart = 0;
         for (int i = 0; i < length; i++) {
-            final char c = value.charAt(i);
+            final char c = chars[i];
             if (c < SPACE || c == QUOTE_CHAR || c == ESCAPE_CHAR) {
                 if (nextStart < i) {
                     builder.append(value, nextStart, i);
